@@ -4,24 +4,29 @@ import { galleryItems } from "./gallery-items.js";
 const refGallery = document.querySelector(".gallery");
 let modalWindow = null;
 
-const arrayItem = [];
 let strWhisAllItem = ``;
 
 galleryItems.forEach((element) => {
-  const { preview, description } = element;
-  strWhisAllItem += `<img class="gallery__image gallery__link gallery__item" src="${preview}" alt="${description}" />`;
+  const { preview, original, description } = element;
+  strWhisAllItem += `<div class="gallery__item">
+  <a class="gallery__link" href="${original}" onclick="return false;">
+    <img
+      class="gallery__image"
+      src="${preview}"
+      data-source="${original}"
+      alt="${description}"
+    />
+  </a>
+</div>`;
   return;
 });
 
 refGallery.insertAdjacentHTML("afterbegin", strWhisAllItem);
 
 refGallery.addEventListener("click", () => {
-  const { original } = galleryItems.find(
-    (element) => element.description === event.target.alt
+  modalWindow = basicLightbox.create(
+    `<img src="${event.target.dataset.source}">`
   );
-
-  modalWindow = basicLightbox.create(`<img src="${original}">`);
-
   modalWindow.show();
 });
 
