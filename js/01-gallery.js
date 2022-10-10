@@ -24,6 +24,9 @@ galleryItems.forEach((element) => {
 refGallery.insertAdjacentHTML("afterbegin", strWhisAllItem);
 
 refGallery.addEventListener("click", () => {
+  if (event.target.classList.contains("gallery")) {
+    return;
+  }
   modalWindow = basicLightbox.create(
     `<img src="${event.target.dataset.source}">`
   );
