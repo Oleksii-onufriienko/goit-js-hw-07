@@ -18,7 +18,7 @@ galleryItems.forEach((element) => {
 
 refGallery.insertAdjacentHTML("afterbegin", strWhisAllItem);
 
-var lightbox = new SimpleLightbox(".gallery a", {
+new SimpleLightbox(".gallery a", {
   /* options */
   captionDelay: 250,
 });

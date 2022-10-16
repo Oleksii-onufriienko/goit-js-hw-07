@@ -18,12 +18,11 @@ galleryItems.forEach((element) => {
     />
   </a>
 </div>`;
-  return;
 });
 
 refGallery.insertAdjacentHTML("afterbegin", strWhisAllItem);
 
-refGallery.addEventListener("click", () => {
+refGallery.addEventListener("click", (event) => {
   if (event.target.classList.contains("gallery")) {
     return;
   }
@@ -34,7 +33,7 @@ refGallery.addEventListener("click", () => {
 });
 
 document.addEventListener("keydown", (event) => {
-  if (event.key === `Escape` && modalWindow.visible()) {
+  if (event.key === `Escape` && modalWindow && modalWindow.visible()) {
     modalWindow.close();
   }
 });
