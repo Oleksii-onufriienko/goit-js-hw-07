@@ -6,6 +6,13 @@ let modalWindow = null;
 
 let strWhisAllItem = ``;
 
+const escapeKeyModalClose = (event) => {
+  if (event.key === `Escape` && modalWindow && modalWindow.visible()) {
+    modalWindow.close();
+    document.removeEventListener("keydown", escapeKeyModalClose);
+  }
+};
+
 galleryItems.forEach((element) => {
   const { preview, original, description } = element;
   strWhisAllItem += `<div class="gallery__item">
@@ -30,10 +37,5 @@ refGallery.addEventListener("click", (event) => {
     `<img src="${event.target.dataset.source}">`
   );
   modalWindow.show();
-});
-
-document.addEventListener("keydown", (event) => {
-  if (event.key === `Escape` && modalWindow && modalWindow.visible()) {
-    modalWindow.close();
-  }
+  document.addEventListener("keydown", escapeKeyModalClose);
 });
