@@ -6,12 +6,12 @@ let modalWindow = null;
 
 let strWhisAllItem = ``;
 
-const escapeKeyModalClose = (event) => {
+function escapeKeyModalClose(event) {
   if (event.key === `Escape` && modalWindow && modalWindow.visible()) {
     modalWindow.close();
     document.removeEventListener("keydown", escapeKeyModalClose);
   }
-};
+}
 
 galleryItems.forEach((element) => {
   const { preview, original, description } = element;
