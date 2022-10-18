@@ -9,7 +9,6 @@ let strWhisAllItem = ``;
 function escapeKeyModalClose(event) {
   if (event.key === `Escape` && modalWindow && modalWindow.visible()) {
     modalWindow.close();
-    document.removeEventListener("keydown", escapeKeyModalClose);
   }
 }
 
@@ -37,5 +36,5 @@ refGallery.addEventListener("click", (event) => {
     `<img src="${event.target.dataset.source}">`
   );
   modalWindow.show();
-  document.addEventListener("keydown", escapeKeyModalClose);
+  document.addEventListener("keydown", escapeKeyModalClose, { once: true });
 });
