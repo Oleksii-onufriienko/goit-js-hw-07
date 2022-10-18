@@ -33,8 +33,13 @@ refGallery.addEventListener("click", (event) => {
     return;
   }
   modalWindow = basicLightbox.create(
-    `<img src="${event.target.dataset.source}">`
+    `<img src="${event.target.dataset.source}">`,
+    {
+      onClose: () => {
+        document.addEventListener("keydown", escapeKeyModalClose);
+      },
+    }
   );
   modalWindow.show();
-  document.addEventListener("keydown", escapeKeyModalClose, { once: true });
+  document.addEventListener("keydown", escapeKeyModalClose);
 });
